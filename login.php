@@ -13,21 +13,7 @@
 </head>
 <body>
 	<!-- NAVBAR -->
-	<nav class="navbar navbar-default">
-        <div class="container">
-            <ul class=" nav navbar-nav">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="keranjang.php">Keranjang</a></li>
-                <?php if(isset($_SESSION["pelanggan"])): ?>
-                    <li><a href="logout.php">Logout</a></li>
-                <?php else: ?>
-                    <li><a href="login.php">Login</a></li>
-                    <!-- <li><a href="daftar.php">Daftar</a></li> -->
-                <?php endif ?>
-                <li><a href="checkout.php">Checkout</a></li>
-            </ul>
-        </div>
-	</nav>
+	<?php include 'menu.php'; ?>
 
 	<!-- BODY -->
 	<div class="container">
@@ -74,7 +60,14 @@ if (isset($_POST["login"])) {
 		//simpan di session penlanggan
 		$_SESSION["pelanggan"] = $akun;
 		echo "<script> alert('anda sukses untuk login'); </script>";
-		echo "<script> location='checkout.php'; </script>";
+
+		//jika sudah belanja
+		if (isset($_SESSION["keranjang"]) OR !empty($_SESSION["keranjang"])) {
+			echo "<script>location='checkout.php';</script>";
+		} else {
+			echo "<script>location='riwayat.php';</script>";
+		}
+		
 	} else {
 		//anda Gagal Login
 		echo "<script> alert('anda gagal login, coba periksa kembali akun anda'); </script>";

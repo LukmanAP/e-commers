@@ -1,6 +1,9 @@
 <?php 
+session_start();
 include 'koneksi.php';
  ?>
+
+
 
  <!DOCTYPE html>
  <html>
@@ -11,22 +14,8 @@ include 'koneksi.php';
  	<link rel="stylesheet" type="text/css" href="admin/assets/css/bootstrap.css">
  </head>
  <body>
- 	<!-- NAVBAAR -->
- 	<nav class="navbar navbar-default">
-        <div class="container">
-            <ul class=" nav navbar-nav">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="keranjang.php">Keranjang</a></li>
-                <?php if(isset($_SESSION["pelanggan"])): ?>
-                    <li><a href="logout.php">Logout</a></li>
-                <?php else: ?>
-                    <li><a href="login.php">Login</a></li>
-                    <!-- <li><a href="daftar.php">Daftar</a></li> -->
-                <?php endif ?>
-                <li><a href="checkout.php">Checkout</a></li>
-            </ul>
-        </div>
-	</nav>
+ 	<!-- NAVBAR -->
+	<?php include 'menu.php'; ?>
 
 	<section class="konten">
 		<div class="container">
@@ -37,6 +26,28 @@ include 'koneksi.php';
 				$ambil = $koneksi->query("SELECT * FROM pembelian JOIN pelanggan ON pembelian.id_pelanggan = pelanggan.id_pelanggan WHERE pembelian.id_pembelian = '$_GET[id]'");
 				$detail = $ambil->fetch_assoc(); 
 			 ?>
+
+			 <h1>data orang yang beli $detail</h1>
+			 <pre><?php print_r($detail); ?></pre>
+
+			 <h1>data orang yang logindi session</h1>
+			 <pre><?php print_r($_SESSION); ?></pre>
+
+			 <!-- jika pelanggan yang beli tidak sama dengan pelanggan yang login, maka dilarikan ke riwayt.php karena tidak berhak melihat nota dari orng lain -->
+			 <!-- pelanggan yang beli harus pelanggan yang login -->
+			 <?php 
+			 //mendapatkan id_pelanggan yang beli
+			 $idpelangganyangbeli = $detail["id_pelanggan"];
+
+			 //mendapatkan id pelanggan yang login
+			 $idpelangganyanglogin = $_SESSION["pelanggan"]["id_pelanggan"];
+
+			 if ($idpelangganyangbeli!==$idpelangganyanglogin) {
+			 	echo "<script>alert('jangan masuk ke riwayat orang lain');</script>";
+			 	echo "<script>location='riwayat.php';</script>";
+			 }
+
+			  ?>
 
 			 <div class="row">
 			 	<div class="col-md-4">
