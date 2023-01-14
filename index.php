@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	$koneksi = new mysqli("localhost:3308","root", "1234", "toko_online");
+	include 'koneksi.php';
  ?>
 
 
@@ -47,6 +47,7 @@
 							<h3><?php echo $perproduk['nama_produk']; ?></h3>
 							<h5>Rp. <?php echo number_format($perproduk['harga_produk']); ?></h5>
 							<a class="btn btn-primary" href="beli.php?id=<?php echo $perproduk['id_produk']; ?>">Beli</a>
+							<a class="btn-default btn" href="detail.php?id=<?php echo $perproduk['id_produk']; ?>">Detail</a>
 						</div>
 					</div>
 				</div>

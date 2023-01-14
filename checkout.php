@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	$koneksi = new mysqli("localhost:3308","root","1234","toko_online");
+	include 'koneksi.php';
 
 	//jik tidak ada session pelanggan yang login maka dilarikan ke login
 	if (!isset($_SESSION["pelanggan"])) {

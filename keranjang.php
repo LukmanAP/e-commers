@@ -5,8 +5,7 @@
 	// print_r($_SESSION['keranjang']);
 	// echo "</pre>";
 
-	$koneksi = new mysqli("localhost:3308","root","1234","toko_online");
-
+	include 'koneksi.php';
 	if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"])) {
 		echo "<script>alert('keranjang kosong, silahkan berbelanja terlebih dahulu'); </script>";
 		echo "<script>location='index.php'; </script>";
