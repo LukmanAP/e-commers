@@ -1,0 +1,1 @@
+<?php $koneksi = new mysqli("localhost:3308","root","1234","toko_online"); ?>

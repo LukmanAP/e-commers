@@ -104,10 +104,16 @@
                                     <?php echo $perongkir['nama_kota']; ?> -
                                     Rp. <?php  echo number_format($perongkir['tarif']);?>
                                 </option>
-                            <?php } ?>
+                            <?php } ?>  
                         </select>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label>Alamat Lengkap pengiriman</label>
+                    <textarea class="form-control" name="alamat_pengiriman" placeholder="masukan alamat lengka pengiriman (termasuk kode pos)"></textarea>
+                </div>
+
                 <button class="btn-primary btn" name="checkout">Checkout</button>
             </form>
 
@@ -116,26 +122,40 @@
                     $id_pelanggan = $_SESSION['pelanggan']['id_pelanggan'];
                     $id_ongkir = $_POST['id_ongkir'];
                     $tanggal_pembelian = date('y-m-d');
+                    $alamat_pengiriman = $_POST['alamat_pengiriman'];
 
                     $ambil = $koneksi->query("SELECT * FROM ongkir WHERE id_ongkir='$id_ongkir'");
                     $arrayongkir = $ambil->fetch_assoc();
+                    $nama_kota = $arrayongkir['nama_kota'];
                     $tarif = $arrayongkir['tarif'];
 
                     $total_pembelian = $totalbelanja + $tarif;
 
                     //menyimpan data ketabel pembelian
 
-                    $koneksi->query("INSERT INTO pembelian (id_pelanggan, id_ongkir, tanggal_pembelian, total_pembelian) VALUES ('$id_pelanggan','$id_ongkir','$tanggal_pembelian','$total_pembelian')");
+                    $koneksi->query("INSERT INTO pembelian (id_pelanggan, id_ongkir, tanggal_pembelian, total_pembelian, nama_kota, tarif, alamat_pengiriman) VALUES ('$id_pelanggan','$id_ongkir','$tanggal_pembelian','$total_pembelian','$nama_kota','$tarif','$alamat_pengiriman')");
 
                     //mendapatkan id_pembelian yang baru terjadi
                     $id_pembelian_barusan = $koneksi->insert_id;
 
                     foreach ($_SESSION['keranjang'] as $id_produk => $jumlah) {
-                        $koneksi->query("INSERT INTO pembelian_produk (id_pembelian, id_produk, jumlah) VALUES ('$id_pembelian_barusan','$id_produk', '$jumlah' )");
+
+                        //mendapatan data produk berdasarkan id_produk
+                        $ambil = $koneksi->query("SELECT * FROM produk WHERE id_produk = '$id_produk'");
+                        $perproduk = $ambil->fetch_assoc();
+
+                        $nama = $perproduk['nama_produk'];
+                        $harga = $perproduk['harga_produk'];
+                        $berat = $perproduk['berat_produk'];
+
+                        $subberat = $perproduk['berat_produk'] * $jumlah;
+                        $subharga = $perproduk['harga_produk'] * $jumlah;
+
+                        $koneksi->query("INSERT INTO pembelian_produk (id_pembelian, id_produk, nama, harga, berat, subberat, subharga, jumlah) VALUES ('$id_pembelian_barusan','$id_produk','$nama','$harga','$berat','$subberat','$subharga', '$jumlah' )");
                     }
 
                     //menglosongkan keranjang
-                    unset($_SESSION['keranjang']);
+                    unset($_SESSION['keranjang']); 
 
                     //tampilan di alihkan ke halaman nota, nota dari pembelian yang barusan
                     echo "<script> alert('pemebelian sukses'); </script>";
