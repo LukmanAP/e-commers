@@ -4,6 +4,7 @@
 	<thead>
 		<tr>
 			<th>no</th>
+			<th>Kategori</th>
 			<th>nama</th>
 			<th>harga</th>
 			<th>berat</th>
@@ -13,11 +14,12 @@
 	</thead>
 	<tbody>
 		<?php $nomor = 1; ?>
-		<?php $ambil = $koneksi->query("SELECT * FROM produk"); ?>
+		<?php $ambil = $koneksi->query("SELECT * FROM produk LEFT JOIN kategori ON produk.id_kategori=kategori.id_kategori"); ?>
 		<?php while ($pecah = $ambil->fetch_assoc()) { ?>
 
 		<tr>
 			<td><?php echo $nomor; ?></td>
+			<td><?php echo $pecah['nama_kategori'] ?></td>
 			<td><?php echo $pecah['nama_produk']; ?></td>
 			<td><?php echo $pecah['harga_produk']; ?></td>
 			<td><?php echo $pecah['berat_produk']; ?></td>

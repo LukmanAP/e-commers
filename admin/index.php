@@ -58,6 +58,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
 
 
                     <li><a href="index.php"><i class="fa fa-dashboard fa-3x"></i> Home</a></li>
+                    <li><a href="index.php?halaman=kategori"><i class="fa fa-dashboard fa-3x"></i> Kategori</a></li>
                     <li><a href="index.php?halaman=produk"><i class="fa fa-dashboard fa-3x"></i> Produk</a></li>
                     <li><a href="index.php?halaman=pembelian"><i class="fa fa-dashboard fa-3x"></i> Pembelian</a></li>
                     <li><a href="index.php?halaman=pelanggan"><i class="fa fa-dashboard fa-3x"></i> Pelanggan</a></li>
@@ -96,6 +97,8 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                         include 'logout.php';
                     } elseif ($_GET['halaman'] == 'pembayaran') {
                         include 'pembayaran.php';
+                    } elseif ($_GET['halaman'] == 'kategori') {
+                        include 'kategori.php';
                     }
                 } else {
                     include 'home.php';
