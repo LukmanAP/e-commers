@@ -54,7 +54,7 @@
 			</div>
 			<div class="form-group">
 				<label>Jumlah</label>
-				<input type="number" name="jumlah" class="form-control" min="1">
+				<input type="number" name="jumlah	" class="form-control" min="1">
 			</div>
 			<div class="form-group">
 				<label>Foto Bukti</label>
