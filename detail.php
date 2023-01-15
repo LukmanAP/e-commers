@@ -36,10 +36,12 @@
 					<h2><?php echo $detail["nama_produk"]; ?></h2>
 					<h4>Rp. <?php echo number_format($detail["harga_produk"]); ?></h4>
 
+					<h5>Stok : <?php echo $detail['stok_produk']; ?></h5>
+
 					<form method="post">
 						<div class="form-group">
 							<div class="input-group">
-								<input class="form-control" type="number" min="1" name="jumlah">
+								<input class="form-control" type="number" min="1" max="<?php echo $detail['stok_produk']; ?>" name="jumlah">
 								<div class="input-group-btn">
 									<button class="btn btn-primary" name="beli">Beli</button>
 								</div>

@@ -137,6 +137,10 @@
                         $subharga = $perproduk['harga_produk'] * $jumlah;
 
                         $koneksi->query("INSERT INTO pembelian_produk (id_pembelian, id_produk, nama, harga, berat, subberat, subharga, jumlah) VALUES ('$id_pembelian_barusan','$id_produk','$nama','$harga','$berat','$subberat','$subharga', '$jumlah' )");
+
+                        //skrip update stok
+                        $koneksi->query("UPDATE produk SET stok_produk = stok_produk-$jumlah WHERE id_produk='$id_produk'");
+
                     }
 
                     //menglosongkan keranjang

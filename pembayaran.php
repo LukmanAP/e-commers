@@ -13,7 +13,7 @@
 	$idpem = $_GET["id"];
 	$ambil = $koneksi->query("SELECT * FROM pembelian WHERE id_pembelian='$idpem'");
 	$detpem = $ambil->fetch_assoc();
-
+ 
 	//mendapatkan id pelanggan yang beli
 	$id_pelanggan_beli = $detpem["id_pelanggan"];
 	//mendapatkan id pelanggan yang login
@@ -41,6 +41,7 @@
 	<div class="container">
 		<h2>Konfirmasi Pembayaran</h2>
 		<p>Kirim Bukti pembayaran anda disini</p>
+		<div class="alert-info alert">Total tagihan anda <strong>Rp. <?php echo number_format($detpem["total_pembelian"]); ?></strong> </div>
 
 		<form method="post" enctype="multipart/form-data">
 			<div class="form-group">
@@ -53,7 +54,7 @@
 			</div>
 			<div class="form-group">
 				<label>Jumlah</label>
-				<input type="number" name="jumlaj" class="form-control" min="1">
+				<input type="number" name="jumlah" class="form-control" min="1">
 			</div>
 			<div class="form-group">
 				<label>Foto Bukti</label>
@@ -63,6 +64,31 @@
 			<button class="btn-primary btn" name="kirim">Kirim</button>
 		</form>
 	</div>
+
+	<?php 
+		if(isset($_POST["kirim"])) {
+			//upload foto bukti
+			$namabukti = $_FILES["bukti"]["name"];
+			$lokasibukti = $_FILES["bukti"]["tmp_name"];
+			$namafiks = date("YmdHis").$namabukti;
+			move_uploaded_file($lokasibukti, "bukti_pembayaran/$namafiks");
+
+			$nama = $_POST["nama"];
+			$bank = $_POST["bank"];
+			$jumlah = $_POST["jumlah"];
+			$tanggal = date("Y-m-d");
+
+			//simpan pembaayaran
+			$koneksi->query("INSERT INTO pembayaran(id_pembelian, nama, bank, jumlah, tanggal, bukti) VALUES ('$idpem','$nama','$bank','$jumlah','$tanggal','$namafiks')");
+
+			//update data pembelian dari pending ke sudah kirim pembayaran
+			$koneksi->query("UPDATE pembelian SET status_pembelian='sudah kirim pembayaran' WHERE id_pembelian='$idpem'");
+
+			echo "<script>alert('terimakasih sudah mengirim bukti pembayaran');</script>";
+			echo "<script>location='riwayat.php';</script>";
+
+		}
+	 ?>
 
 </body>	
 </html>

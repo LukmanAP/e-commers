@@ -94,6 +94,8 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                         include 'ubahpelanggan.php';
                     } elseif ($_GET['halaman'] == 'logout') {
                         include 'logout.php';
+                    } elseif ($_GET['halaman'] == 'pembayaran') {
+                        include 'pembayaran.php';
                     }
                 } else {
                     include 'home.php';
