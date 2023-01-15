@@ -60,7 +60,12 @@
 						<td><?php echo number_format($pecah["total_pembelian"]); ?></td>
 						<td>
 							<a href="nota.php?id=<?php echo $pecah["id_pembelian"]; ?>" class="btn-info btn">Nota</a>
-							<a href="pembayaran.php?id=<?php echo $pecah["id_pembelian"]; ?>" class="btn-success btn">Pembayaran</a>
+
+							<?php if($pecah['status_pembelian']=="pending"): ?>
+								<a href="pembayaran.php?id=<?php echo $pecah["id_pembelian"]; ?>" class="btn-success btn">Input Pembayaran</a>
+							<?php else: ?>
+								<a href="lihat_pembayaran.php?id=<?php echo $pecah["id_pembelian"]; ?>" class="btn-warning btn">Lihat Pembeyaran</a>
+							<?php endif ?>
 						</td>
 					</tr>
 					<?php $nomor++; ?>
