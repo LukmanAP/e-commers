@@ -29,6 +29,8 @@ session_start();
     <link href="assets/css/custom.css" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- JQUERY SCRIPTS -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
 </head>
 
 <body>
@@ -99,7 +101,11 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                         include 'pembayaran.php';
                     } elseif ($_GET['halaman'] == 'kategori') {
                         include 'kategori.php';
-                    } 
+                    } elseif ($_GET['halaman'] == 'detailproduk') {
+                        include 'detailproduk.php';
+                    } elseif ($_GET['halaman'] == 'hapusfotoproduk') {
+                        include 'hapusfotoproduk.php';
+                    }
                 } else {
                     include 'home.php';
                 }
@@ -112,8 +118,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
     </div>
     <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
+    
     <!-- BOOTSTRAP SCRIPTS -->
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->

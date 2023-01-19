@@ -75,7 +75,7 @@
 
  			$koneksi->query("UPDATE produk SET nama_produk='$_POST[nama]', harga_produk='$_POST[harga]', berat_produk='$_POST[berat]', foto_produk='$namafoto', deskripsi_produk='$_POST[deskripsi]', id_kategori='$_POST[id_kategori]', stok_produk='$_POST[stok]' WHERE id_produk='$_GET[id]'"); 		
  		} else {
- 			$koneksi->query("UPDATE produk SET nama_produk='$_POST[nama]', harga_produk='$_POST[harga]', berat_produk='$_POST[berat]', deskripsi_produk='$_POST[deskripsi]', id_kategori='$_POST[id_kategori]',stok_produk='$_POST[stok]' WHERE id_produk='$_GET[id]'"); 
+ 			$koneksi->query("UPDATE produk SET nama_produk='$_POST[nama]', harga_produk='$_POST[harga]', berat_produk='$_POST[berat]', deskripsi_produk='$_POST[deskripsi]', id_kategori='$_POST[id_kategori]' WHERE id_produk='$_GET[id]'"); 
  		}
 
  		echo "<script> alert('Data Produk Berhasil di Ubah'); </script>";

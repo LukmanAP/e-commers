@@ -31,6 +31,7 @@
 			<td>
 				<a class="btn-danger btn" href="index.php?halaman=hapusproduk&id=<?php echo $pecah['id_produk']; ?>">hapus</a>
 				<a class="btn btn-warning" href="index.php?halaman=ubahproduk&id=<?php echo $pecah['id_produk']; ?>">ubah</a>
+				<a class="btn btn-info" href="index.php?halaman=detailproduk&id=<?php echo $pecah['id_produk']; ?>">detail</a>
 			</td>
 		</tr>
 		<?php $nomor++; ?>
