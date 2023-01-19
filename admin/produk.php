@@ -8,6 +8,7 @@
 			<th>nama</th>
 			<th>harga</th>
 			<th>berat</th>
+			<th>Stok </th>
 			<th>foto</th>
 			<th>aksi</th>
 		</tr>
@@ -23,6 +24,7 @@
 			<td><?php echo $pecah['nama_produk']; ?></td>
 			<td><?php echo $pecah['harga_produk']; ?></td>
 			<td><?php echo $pecah['berat_produk']; ?></td>
+			<td><?php echo $pecah['stok_produk']; ?></td>
 			<td>
 				<img src="../foto_produk/<?php echo $pecah['foto_produk']; ?>" width="100">
 			</td>

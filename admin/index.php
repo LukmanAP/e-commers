@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
 session_start();
  $koneksi = new mysqli("localhost:3308","root","1234","toko_online");
 
@@ -82,7 +82,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                     } elseif ($_GET['halaman'] == "detail") {
                         include 'detail.php';
                     } elseif ($_GET['halaman'] == "tambahproduk") {
-                        include 'tambahproduk.php';
+                          include 'tambahproduk.php';
                     } elseif ($_GET['halaman']== 'tambahpelanggan') {
                         include 'tambahpelanggan.php';
                     } elseif ($_GET['halaman']== 'hapusproduk') {
@@ -99,7 +99,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                         include 'pembayaran.php';
                     } elseif ($_GET['halaman'] == 'kategori') {
                         include 'kategori.php';
-                    }
+                    } 
                 } else {
                     include 'home.php';
                 }
